@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Assets
+Allow: /assets/
+Disallow: /tools/
+
+Sitemap: https://stylejewellers.co.za/sitemap.xml

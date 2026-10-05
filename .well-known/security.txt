@@ -1,0 +1,4 @@
+Contact: mailto:info@stylejewellers.co.za
+Expires: 2027-10-05T00:00:00.000Z
+Preferred-Languages: en
+Policy: https://stylejewellers.co.za/privacy.html
