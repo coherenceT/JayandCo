@@ -279,7 +279,7 @@ def make_social_card():
     d.line([(W / 2 - 90, divider_y), (W / 2 + 90, divider_y)],
            fill=(168, 132, 43), width=1)
 
-    caption = "FINE JEWELERS  •  EST. 2003"
+    caption = "FINE JEWELLERS  •  EST. 1994"
     spacing = 12
     widths = [d.textlength(ch, font=font) for ch in caption]
     total = sum(widths) + spacing * (len(caption) - 1)
@@ -298,9 +298,9 @@ make_social_card()
 # ---------------------------------------------------------------- manifest
 with open("site.webmanifest", "w") as f:
     f.write("""{
-  "name": "Jay & Co Jewelers",
+  "name": "Jay & Co Jewellers",
   "short_name": "Jay & Co",
-  "description": "Fine jewelers & bespoke craftsmanship since 2003.",
+  "description": "Fine jewellery & bespoke craftsmanship since 1994.",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#FCFBF8",
