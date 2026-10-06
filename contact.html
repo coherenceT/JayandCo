@@ -100,7 +100,6 @@
 
     <!-- ===================== CONTACT SECTION ===================== -->
     <section class="section home-contact" id="contact-details">
-    <div id="map"></div>
       <div class="container">
         <div class="home-contact__grid">
 
@@ -285,12 +284,22 @@
   </footer>
 
   <!-- ===================== CONTACT MAP ===================== -->
-  <section class="section contact-map" id="map">
+  <section class="section contact-map" id="map-section">
     <div class="container contact-map__inner">
       <div class="contact-map__card">
         <p class="eyebrow">Map</p>
         <h2 class="section__title">Showroom Location</h2>
-        <div id="map"></div>
+        <div class="map-container" style="margin: 2rem 0;">
+          <iframe 
+            src="https://maps.google.com/maps?q=Office%20Nr%2016B,%20Smokey%20Mountain%20N4%20Business%20Park,%20Emalahleni,%20South%20Africa&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="450" 
+            style="border:0; border-radius: 4px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
         <p class="contact-map__hint">
           Jay &amp; Co Jewellers<br>
           Office Nr 16B, Smokey Mountain N4 Business Park, Emalahleni, South Africa<br>
@@ -300,29 +309,6 @@
       </div>
     </div>
   </section>
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIza185040074151-8p7aek0739b8om6j6hsjt5tssgr96b4b.apps.googleusercontent.com&libraries=places" async defer></script>
-  <script>
-  (function () {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: { lat: -26.7077, lng: 28.2740 },
-      zoom: 16,
-      styles: [
-        { "elementType": "geometry", "stylers": [{ "color": "#1a1816" }] },
-        { "elementType": "labels.icon", "stylers": [{ "color": "#a7894d" }] },
-        { "elementType": "labels.text.fill", "stylers": [{ "color": "#e8e2d6" }] },
-        { "elementType": "labels.text.stroke", "stylers": [{ "color": "#1a1816" }] },
-        { "featureType": "road", "elementType": "geometry", "stylers": [{ "color": "#3a3530" }] },
-        { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#0d0c0b" }] }
-      ]
-    });
-    new google.maps.Marker({
-      position: { lat: -26.7077, lng: 28.2740 },
-      map: map,
-      title: 'Jay & Co Jewellers'
-    });
-  })();
-  </script>
 
   <script src="assets/js/main.js" defer></script>
 </body>

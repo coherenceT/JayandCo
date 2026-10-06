@@ -1121,3 +1121,75 @@ h1, h2, h3, h4 {
   0% { top: -100%; }
   60%, 100% { top: 110%; }
 }
+
+/* -------------------------------------------------- forms */
+.form, .journal-band__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.field__input {
+  width: 100%;
+  padding: 1rem 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--clr-border);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--clr-text);
+  outline: none;
+  transition: border-color var(--trans-snappy);
+}
+.field__input:focus, .field__input:not(:placeholder-shown) {
+  border-color: var(--clr-text);
+}
+.field__label {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  font-size: 1rem;
+  color: var(--clr-text-mute);
+  pointer-events: none;
+  transition: transform var(--trans-snappy), font-size var(--trans-snappy);
+  transform-origin: left top;
+}
+.field__input:focus + .field__label,
+.field__input:not(:placeholder-shown) + .field__label {
+  transform: translateY(-1.25rem);
+  font-size: 0.8rem;
+  color: var(--clr-text);
+}
+.field__input--area {
+  resize: vertical;
+  min-height: 120px;
+}
+.field__error {
+  font-size: 0.8rem;
+  color: #d9534f;
+  margin-top: 0.25rem;
+  display: none;
+}
+.form__success {
+  color: var(--clr-accent);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+.journal-band__form {
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.journal-band__field {
+  flex: 1;
+}
+@media (max-width: 600px) {
+  .journal-band__form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
