@@ -791,10 +791,44 @@ h1, h2, h3, h4 {
 .enquiry-card__title em { color: var(--gold); }
 
 /* -------------------------------------------------- forms */
-.form {
-  display: grid;
-  gap: 1.4rem;
+.contact-map {
+  background: var(--paper);
+  padding-block: clamp(2.5rem, 5vw, 4rem);
 }
+.contact-map__inner {
+  max-width: 880px;
+  margin-inline: auto;
+  display: grid;
+  gap: 1.2rem;
+}
+.contact-map__card {
+  background: var(--ivory);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.8rem;
+}
+.contact-map__card .eyebrow { color: var(--gold-bright); }
+.contact-map__card .section__title {
+  margin: 0.2rem 0 1.1rem;
+  text-align: center;
+}
+#map {
+  height: 340px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+.contact-map__hint {
+  margin-top: 1rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.contact-map__hint a { color: var(--gold); border-bottom: 1px solid var(--rule); }
+.contact-map__hint a:hover { color: var(--ink); border-bottom-color: var(--gold); }
+
+/* =============================================================
+   JAY & CO JEWELERS — rebuilt shared JS
 .field { position: relative; }
 .field__input {
   width: 100%;
