@@ -44,9 +44,9 @@ body {
   color: var(--ink-soft);
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.7;
+  line-height: 1.65;
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.012em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -62,8 +62,8 @@ h1, h2, h3, h4 {
   font-family: var(--font-display);
   color: var(--ink);
   font-weight: 400;
-  line-height: 1.12;
-  letter-spacing: 0.005em;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
 }
 
 ::selection { background: rgba(167, 137, 77, 0.85); color: #171513; }
@@ -96,8 +96,8 @@ h1, h2, h3, h4 {
   position: absolute;
   left: 0; right: 0; top: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--rule) 18%, var(--rule) 82%, transparent);
-  opacity: 0.7;
+  background: linear-gradient(90deg, transparent 5%, var(--rule) 20%, var(--rule) 80%, transparent 95%);
+  opacity: 0.55;
 }
 
 .skip-link {
@@ -145,9 +145,10 @@ h1, h2, h3, h4 {
 }
 .section__lead {
   margin-top: 1.1rem;
-  font-size: clamp(0.98rem, 1.3vw, 1.05rem);
+  font-size: clamp(0.96rem, 1.25vw, 1.04rem);
   color: var(--ink-soft);
-  max-width: 60ch;
+  max-width: 58ch;
+  line-height: 1.7;
 }
 
 /* -------------------------------------------------- buttons */
@@ -292,6 +293,7 @@ h1, h2, h3, h4 {
   gap: clamp(1.1rem, 2.2vw, 2.2rem);
 }
 .nav__links a {
+  position: relative;
   font-family: var(--font-body);
   font-size: 0.72rem;
   letter-spacing: 0.22em;
@@ -300,12 +302,18 @@ h1, h2, h3, h4 {
   padding-block: 0.5rem;
   transition: color 0.3s var(--ease-out);
 }
-.nav__links a:hover, .nav__links a.is-active { color: var(--gold); }
-.nav__links a:hover::after {
+.nav__links a::after {
   content: "";
   position: absolute;
-  left: 0; bottom: 0; width: 100%; height: 1px;
+  left: 0; bottom: 0;
+  width: 0; height: 1px;
   background: var(--gold);
+  transition: width 0.4s var(--ease-out);
+}
+.nav__links a:hover, .nav__links a.is-active { color: var(--gold); }
+.nav__links a:hover::after,
+.nav__links a.is-active::after {
+  width: 100%;
 }
 
 .header__actions {
@@ -574,17 +582,17 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   background: var(--paper);
-  border: 1px solid rgba(167, 137, 77, 0.2);
-  border-radius: 4px;
+  border: 1px solid rgba(167, 137, 77, 0.18);
+  border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 10px 40px -20px rgba(13, 12, 11, 0.15);
-  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out),
-              border-color 0.5s var(--ease-out);
+  box-shadow: 0 8px 32px -16px rgba(13, 12, 11, 0.12);
+  transition: transform 0.6s var(--ease-out), box-shadow 0.6s var(--ease-out),
+              border-color 0.6s var(--ease-out);
 }
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px -20px rgba(167, 137, 77, 0.25);
-  border-color: rgba(167, 137, 77, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px -18px rgba(167, 137, 77, 0.22);
+  border-color: rgba(167, 137, 77, 0.45);
 }
 .card__media {
   position: relative;
@@ -596,7 +604,7 @@ h1, h2, h3, h4 {
 .card__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.9s var(--ease-out);
+  transition: transform 1.2s var(--ease-out);
 }
 .card:hover .card__media img { transform: scale(1.05); }
 .card__media::after {
@@ -648,6 +656,10 @@ h1, h2, h3, h4 {
 .bespoke-split__image img {
   width: 100%; height: 100%;
   object-fit: cover;
+  transition: transform 1.2s var(--ease-out);
+}
+.bespoke-split__image:hover img {
+  transform: scale(1.03);
 }
 .bespoke-split__text { max-width: 52ch; }
 .bespoke-split__body {
@@ -730,15 +742,15 @@ h1, h2, h3, h4 {
 .visit-card, .enquiry-card {
   padding: clamp(2rem, 4vw, 3.5rem);
   background: var(--paper);
-  border: 1px solid rgba(167, 137, 77, 0.2);
-  border-radius: 4px;
-  box-shadow: 0 10px 40px -20px rgba(13, 12, 11, 0.15);
-  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.5s var(--ease-out);
+  border: 1px solid rgba(167, 137, 77, 0.18);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px -16px rgba(13, 12, 11, 0.12);
+  transition: transform 0.6s var(--ease-out), box-shadow 0.6s var(--ease-out), border-color 0.6s var(--ease-out);
 }
 .visit-card:hover, .enquiry-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 50px -20px rgba(167, 137, 77, 0.25);
-  border-color: rgba(167, 137, 77, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 42px -18px rgba(167, 137, 77, 0.2);
+  border-color: rgba(167, 137, 77, 0.4);
 }
 .visit-card__eyebrow { color: var(--gold); }
 .visit-card__title {
@@ -834,7 +846,8 @@ h1, h2, h3, h4 {
 .contact-map__hint a:hover { color: var(--ink); border-bottom-color: var(--gold); }
 
 /* =============================================================
-   JAY & CO JEWELERS — rebuilt shared JS */
+   JAY & CO JEWELERS — form system
+   ============================================================= */
 .form {
   display: flex;
   flex-direction: column;
@@ -845,7 +858,7 @@ h1, h2, h3, h4 {
   width: 100%;
   background: var(--ivory);
   border: 1px solid var(--rule);
-  border-radius: 4px;
+  border-radius: var(--radius);
   padding: 1.3rem 1rem 0.55rem;
   color: var(--ink);
   font-size: 0.96rem;
@@ -908,7 +921,7 @@ h1, h2, h3, h4 {
 .form__success {
   padding: 0.85rem 1.1rem;
   border: 1px solid var(--gold);
-  border-radius: 4px;
+  border-radius: var(--radius);
   background: rgba(167, 137, 77, 0.14);
   color: var(--ink);
   font-size: 0.88rem;
@@ -1188,11 +1201,11 @@ h1, h2, h3, h4 {
 
 /* -------------------------------------------------- input focus glow pulse */
 @keyframes goldPulse {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(167, 137, 77, 0.12), 0 6px 20px -10px rgba(167, 137, 77, 0.2); }
-  50% { box-shadow: 0 0 0 4px rgba(167, 137, 77, 0.22), 0 8px 24px -8px rgba(167, 137, 77, 0.35); }
+  0%, 100% { box-shadow: 0 0 0 3px rgba(167, 137, 77, 0.1), 0 4px 14px -8px rgba(167, 137, 77, 0.15); }
+  50% { box-shadow: 0 0 0 3px rgba(167, 137, 77, 0.18), 0 6px 18px -6px rgba(167, 137, 77, 0.22); }
 }
 .field__input:focus {
-  animation: goldPulse 2.5s ease-in-out infinite;
+  animation: goldPulse 3s ease-in-out 1;
 }
 
 /* -------------------------------------------------- button hover shimmer */
