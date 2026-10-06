@@ -428,7 +428,7 @@ h1, h2, h3, h4 {
   background:
     linear-gradient(180deg, rgba(13,12,11,0.15), rgba(13,12,11,0.55) 55%, rgba(13,12,11,0.85) 100%),
     linear-gradient(90deg, rgba(13,12,11,0.6), rgba(13,12,11,0.35) 55%, rgba(13,12,11,0.7) 100%),
-    url('assets/hero.jpg');
+    url('../hero.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -440,28 +440,42 @@ h1, h2, h3, h4 {
 }
 .hero__content > * { max-width: 60ch; }
 
-.hero__eyebrow { color: var(--gold-bright); }
+/* Hero copy sits in white over the photograph, with a soft dark shadow for contrast. */
+.hero__eyebrow { color: var(--ivory); }
 .hero__title {
   font-size: clamp(2.8rem, 7.4vw, 5.2rem);
   margin-top: 1.6rem;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.45);
+  color: var(--ivory);
+  text-shadow: 0 2px 20px rgba(13, 12, 11, 0.55);
 }
 .hero__title em {
   font-style: italic;
-  background: linear-gradient(100deg, var(--gold-bright), var(--gold) 45%, var(--ink-deep) 60%, var(--gold-bright) 92%);
-  background-size: 240% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: none;
-  animation: foilsheen 9s linear infinite;
+  color: var(--ivory);
+  text-shadow: inherit;
 }
 .hero__body {
   margin-top: 1.5rem;
   font-size: clamp(0.98rem, 1.4vw, 1.08rem);
   color: var(--ivory);
   line-height: 1.75;
+  text-shadow: 0 1px 14px rgba(13, 12, 11, 0.5);
 }
+.hero .btn--outline {
+  border-color: rgba(247, 245, 239, 0.72);
+  color: var(--ivory);
+}
+.hero .btn--outline:hover,
+.hero .btn--outline:focus-visible {
+  background: var(--ivory);
+  border-color: var(--ivory);
+  color: var(--ink-deep);
+}
+.hero .link-arrow { color: var(--ivory); }
+.hero .link-arrow__glyph { color: var(--ivory); transition: transform 0.3s var(--ease-out); }
+.hero .link-arrow:hover,
+.hero .link-arrow:focus-visible { color: var(--gold-bright); }
+.hero .link-arrow:hover .link-arrow__glyph,
+.hero .link-arrow:focus-visible .link-arrow__glyph { color: var(--gold-bright); }
 .hero__ctas {
   margin-top: 2.4rem;
   display: flex;
@@ -856,7 +870,7 @@ h1, h2, h3, h4 {
   position: relative;
   background:
     linear-gradient(180deg, rgba(13,12,11,0.45), rgba(13,12,11,0.75)),
-    url('assets/journal.jpg');
+    url('../journal.jpg');
   background-size: cover;
   background-position: center;
   color: var(--ivory);

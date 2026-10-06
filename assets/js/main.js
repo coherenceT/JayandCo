@@ -195,9 +195,11 @@
     var email = form.querySelector('#email').value.trim();
     var message = form.querySelector('#message').value.trim();
 
-    var defaultPhone = '1234567890';
+    /* Real business WhatsApp number, in full international format for wa.me.
+       A form can override it with data-phone; non-digits are always stripped. */
+    var defaultPhone = '27826986800';
     var phoneAttr = form.getAttribute('data-phone');
-    if (phoneAttr) defaultPhone = phoneAttr;
+    if (phoneAttr) defaultPhone = String(phoneAttr).replace(/\D/g, '');
 
     var lines = [
       'Hi Jay & Co,',
