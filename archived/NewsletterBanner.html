@@ -1,0 +1,43 @@
+<!--
+  ARCHIVED: hidden until the Jay & Co newsletter is ready. To re-enable, import and render <NewsletterBanner /> where it used to sit (Home page, above the footer).
+
+  All copy and styling below are preserved exactly as they were. Nothing here is rendered anywhere
+  on the live site; the shared CSS (.journal-band*) in assets/css/styles.css is intentionally left
+  in place so this drops straight back in.
+
+  Where it used to sit (all three were removed in the same round):
+    1. index.html   — Home page,  as the last section inside <main>, directly above the footer
+    2. contact.html — Contact page, immediately after </main>, directly above the footer
+    3. bespoke.html — Bespoke page, as the last section inside <main>, directly above the footer
+
+  To re-enable:
+    - paste the <section> below back into the same position, and
+    - re-add the commented-out marker line each page now carries in its place.
+  The JS handler (handleSubscribe / data-form="subscribe" in assets/js/main.js) is also left
+  untouched, so no wiring changes are needed. No backend code was removed.
+-->
+<section class="journal-band" aria-label="The Jay &amp; Co Journal">
+  <div class="container">
+    <p class="eyebrow" data-reveal>The Jay &amp; Co Journal</p>
+    <h2 class="section__title" data-reveal>Stories of <em>Craft &amp; Beauty</em></h2>
+    <p class="section__lead" data-reveal>
+      Subscribe for new collection announcements, jewelry care guides, and exclusive invitations to private events.
+    </p>
+
+    <form class="journal-band__form" novalidate data-form="subscribe">
+      <div class="field journal-band__field">
+        <input class="field__input" type="email" id="subscriber-email" name="email"
+               placeholder=" " autocomplete="email" required>
+        <label class="field__label" for="subscriber-email">Your email address</label>
+        <span class="field__error" data-error></span>
+      </div>
+      <button class="btn" type="submit">
+        <span data-btn-text>Subscribe</span>
+      </button>
+    </form>
+
+    <p class="form__success" role="status" aria-live="polite" hidden style="margin-top:1rem">
+      Welcome to the journal — your first note is on its way.
+    </p>
+  </div>
+</section>

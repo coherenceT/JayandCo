@@ -288,6 +288,16 @@ h1, h2, h3, h4 {
   color: var(--gold);
 }
 
+/* Header logo slot (left of the JAY & CO wordmark).
+   Swap the <img> src for the supplied logo file — nothing else needs to change. */
+.brand__logo {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  margin-right: 0.7rem;
+  object-fit: contain;
+}
+
 .nav__links {
   display: none;
   gap: clamp(1.1rem, 2.2vw, 2.2rem);
@@ -730,6 +740,22 @@ h1, h2, h3, h4 {
   margin-inline: auto;
 }
 
+/* Our Story copy inside the dark band on Home */
+.difference .story-copy {
+  display: grid;
+  gap: 1.15rem;
+  max-width: 64ch;
+  margin: 1.75rem auto 0;
+  text-align: left;
+  font-size: clamp(0.96rem, 1.25vw, 1.04rem);
+  line-height: 1.75;
+  color: rgba(247, 245, 239, 0.86);
+}
+.difference .story-copy strong {
+  color: var(--ivory);
+  font-weight: 600;
+}
+
 /* -------------------------------------------------- home contact section */
 .home-contact {
   background: var(--paper);
@@ -1103,12 +1129,28 @@ h1, h2, h3, h4 {
 }
 .footer__hours li {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1rem;
+  align-items: baseline;
+  gap: 0.15rem 1rem;
   font-size: 0.82rem;
+  line-height: 1.5;
   color: rgba(247, 245, 239, 0.65);
 }
-.footer__hours li span:last-child { color: rgba(247, 245, 239, 0.9); }
+/* Times stay on one line and sit flush right (label left, time right) ... */
+.footer__hours li span:first-child { flex: 0 1 auto; }
+.footer__hours li span:last-child {
+  flex: none;
+  margin-left: auto;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: rgba(247, 245, 239, 0.9);
+}
+/* ... and stack label-above-time once the footer column gets narrow. */
+@media (max-width: 560px) {
+  .footer__hours li { flex-direction: column; align-items: flex-start; gap: 0.05rem; }
+  .footer__hours li span:last-child { margin-left: 0; }
+}
 .footer__address {
   font-style: normal;
   font-size: 0.82rem;
