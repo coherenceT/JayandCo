@@ -14,6 +14,14 @@
 # Long-lived caching for immutable assets
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Override for CSS and JS: they are edited in place (there is no build step that
+# hashes filenames), so returning visitors must revalidate or they keep the old
+# stylesheet and scripts. Later rules win, so these take precedence above.
+/assets/css/*
+  Cache-Control: public, max-age=600, must-revalidate
+/assets/js/*
+  Cache-Control: public, max-age=600, must-revalidate
 /favicon.*
   Cache-Control: public, max-age=86400
 /site.webmanifest

@@ -282,6 +282,130 @@
     });
   });
 
+  /* -------------------------------------------------- piece viewer (gallery)
+     Tiles are real links, so the page works without JS. With JS we open the
+     piece in a viewer and let the visitor browse the rest of its collection. */
+  var pieceLinks = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
+
+  if (pieceLinks.length) {
+    var WA_NUMBER = '27826986800';              /* same number the enquiry form uses */
+    var CONTACT_EMAIL = 'info@stylejewellers.co.za';
+
+    var viewer = document.createElement('div');
+    viewer.className = 'piece';
+    viewer.setAttribute('role', 'dialog');
+    viewer.setAttribute('aria-modal', 'true');
+    viewer.setAttribute('aria-labelledby', 'piece-title');
+    viewer.hidden = true;
+    viewer.innerHTML =
+      '<button class="piece__close" type="button" aria-label="Close this piece">&times;</button>' +
+      '<div class="piece__panel">' +
+        '<div class="piece__stage"><img class="piece__img" alt=""></div>' +
+        '<div class="piece__body">' +
+          '<p class="piece__collection"></p>' +
+          '<h2 class="piece__title" id="piece-title"></h2>' +
+          '<div class="piece__rule" aria-hidden="true"></div>' +
+          '<p class="piece__text"></p>' +
+          '<div class="piece__nav">' +
+            '<button class="piece__arrow" type="button" data-piece-prev aria-label="Previous piece">&#8592;</button>' +
+            '<span class="piece__counter" aria-live="polite"></span>' +
+            '<button class="piece__arrow" type="button" data-piece-next aria-label="Next piece">&#8594;</button>' +
+          '</div>' +
+          '<div class="piece__actions">' +
+            '<a class="btn" data-piece-enquire target="_blank" rel="noopener">Send us an Enquiry</a>' +
+            '<p class="piece__email">or email <a data-piece-email></a></p>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(viewer);
+
+    var vImg = viewer.querySelector('.piece__img');
+    var vCollection = viewer.querySelector('.piece__collection');
+    var vTitle = viewer.querySelector('.piece__title');
+    var vText = viewer.querySelector('.piece__text');
+    var vCounter = viewer.querySelector('.piece__counter');
+    var vEnquire = viewer.querySelector('[data-piece-enquire]');
+    var vEmail = viewer.querySelector('[data-piece-email]');
+    var vClose = viewer.querySelector('.piece__close');
+
+    var group = [];        /* tiles of the collection being browsed */
+    var groupIndex = 0;
+    var groupName = '';
+    var lastFocused = null;
+
+    function renderPiece() {
+      var link = group[groupIndex];
+      if (!link) return;
+      var thumb = link.querySelector('img');
+      var ref = link.getAttribute('data-ref') || '';
+
+      vImg.src = link.getAttribute('href');
+      vImg.alt = thumb ? thumb.alt : '';
+      vCollection.textContent = groupName;
+      vTitle.textContent = ref;
+      vText.textContent = link.getAttribute('data-description') || '';
+      vCounter.textContent = (groupIndex + 1) + ' / ' + group.length;
+
+      var message = 'Hi Jay & Co,\n\nI would like to enquire about ' + ref +
+                    ' (' + groupName + ').\n\nPlease send me more details.\n';
+      vEnquire.setAttribute('href', 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(message));
+      vEnquire.setAttribute('aria-label', 'Send us an enquiry about ' + ref + ' on WhatsApp');
+      vEmail.setAttribute('href', 'mailto:' + CONTACT_EMAIL +
+                          '?subject=' + encodeURIComponent('Enquiry: ' + ref));
+      vEmail.textContent = CONTACT_EMAIL;
+    }
+
+    function openPiece(link) {
+      var grid = link.closest('[data-collection]');
+      group = grid
+        ? Array.prototype.slice.call(grid.querySelectorAll('[data-lightbox]'))
+        : [link];
+      groupName = grid ? (grid.getAttribute('data-collection') || '') : '';
+      groupIndex = Math.max(0, group.indexOf(link));
+      lastFocused = link;
+      renderPiece();
+      viewer.hidden = false;
+      document.body.classList.add('piece-open');
+      vClose.focus();
+    }
+
+    function closePiece() {
+      viewer.hidden = true;
+      vImg.removeAttribute('src');
+      document.body.classList.remove('piece-open');
+      if (lastFocused) lastFocused.focus();
+    }
+
+    function stepPiece(delta) {
+      if (!group.length) return;
+      groupIndex = (groupIndex + delta + group.length) % group.length;
+      renderPiece();
+    }
+
+    pieceLinks.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        /* let Cmd/Ctrl/Shift-click and middle-click open the file as usual */
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        openPiece(link);
+      });
+    });
+
+    viewer.querySelector('[data-piece-prev]').addEventListener('click', function () { stepPiece(-1); });
+    viewer.querySelector('[data-piece-next]').addEventListener('click', function () { stepPiece(1); });
+    vClose.addEventListener('click', closePiece);
+    viewer.addEventListener('click', function (e) {
+      if (e.target === viewer) closePiece();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (viewer.hidden) return;
+      if (e.key === 'Escape') closePiece();
+      else if (e.key === 'ArrowLeft') stepPiece(-1);
+      else if (e.key === 'ArrowRight') stepPiece(1);
+    });
+  }
+
   /* -------------------------------------------------- footer year */
   var yearEl = document.querySelector('[data-year]');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
