@@ -1381,8 +1381,10 @@ h1, h2, h3, h4 {
 }
 .piece__stage {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: clamp(1rem, 1.8vw, 1.4rem);
   min-height: 280px;
   padding: clamp(0.75rem, 2vw, 1.75rem);
   background: #ffffff;
@@ -1420,15 +1422,15 @@ h1, h2, h3, h4 {
   line-height: 1.72;
   color: var(--ink-soft);
 }
-.piece__actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.8rem;
+/* The enquiry sits directly beneath the photograph, with the description
+   in the panel beside it. */
+.piece__enquire { width: 100%; }
+.piece__email {
   margin-top: auto;
   padding-top: 1rem;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
 }
-.piece__email { font-size: 0.78rem; color: var(--ink-soft); }
 .piece__email a {
   color: var(--gold);
   border-bottom: 1px solid rgba(167, 137, 77, 0.45);
@@ -1500,7 +1502,7 @@ body.piece-open { overflow: hidden; }
   }
   .piece__body { border-left: 0; border-top: 1px solid rgba(167, 137, 77, 0.22); }
   .piece__img { max-height: min(52vh, 460px); }
-  .piece__actions { margin-top: 0.5rem; }
+  .piece__email { margin-top: 0.5rem; }
 }
 
 /* A two-up board keeps the pieces legible on phones. */

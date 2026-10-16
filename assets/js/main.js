@@ -300,7 +300,10 @@
     viewer.innerHTML =
       '<button class="piece__close" type="button" aria-label="Close this piece">&times;</button>' +
       '<div class="piece__panel">' +
-        '<div class="piece__stage"><img class="piece__img" alt=""></div>' +
+        '<div class="piece__stage">' +
+          '<img class="piece__img" alt="">' +
+          '<a class="btn piece__enquire" data-piece-enquire target="_blank" rel="noopener">Send us an Enquiry</a>' +
+        '</div>' +
         '<div class="piece__body">' +
           '<p class="piece__collection"></p>' +
           '<h2 class="piece__title" id="piece-title"></h2>' +
@@ -311,10 +314,7 @@
             '<span class="piece__counter" aria-live="polite"></span>' +
             '<button class="piece__arrow" type="button" data-piece-next aria-label="Next piece">&#8594;</button>' +
           '</div>' +
-          '<div class="piece__actions">' +
-            '<a class="btn" data-piece-enquire target="_blank" rel="noopener">Send us an Enquiry</a>' +
-            '<p class="piece__email">or email <a data-piece-email></a></p>' +
-          '</div>' +
+          '<p class="piece__email">or email <a data-piece-email></a></p>' +
         '</div>' +
       '</div>';
     document.body.appendChild(viewer);
