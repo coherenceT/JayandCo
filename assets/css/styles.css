@@ -636,11 +636,35 @@ h1, h2, h3, h4 {
 }
 .card__title { font-size: clamp(1.4rem, 2.3vw, 1.8rem); }
 .card__text { font-size: 0.94rem; color: var(--ink-soft); }
+/* The link must NOT be positioned here: the pseudo-element below stretches to
+   the nearest positioned ancestor, which is .card — that is what makes the
+   whole box clickable rather than just the label. */
 .card__link {
   margin-top: auto;
   align-self: flex-start;
   padding-top: 0.5rem;
 }
+
+/* Whole-card link. The label stays the real, focusable anchor and this
+   pseudo-element stretches it over the card, so the box, the image and the
+   copy are all one click target. Nothing else is interactive inside a card,
+   so nothing gets covered up. */
+.card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.card__link:focus-visible::after {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: -3px;
+  border-radius: var(--radius);
+}
+
+/* The card already lifts on hover; make the whole surface read as clickable. */
+.card__link::after { cursor: pointer; }
+.card:hover .card__link { color: var(--gold); }
+.card:hover .card__link .link-arrow__glyph { transform: translateX(6px); }
 
 .collections__cta {
   text-align: center;
