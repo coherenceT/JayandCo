@@ -60,19 +60,20 @@ no third-party font requests, so the strict Content-Security-Policy holds.
   (a `fetch('/api/enquiry', …)` example is commented there).
 - `.well-known/security.txt` published for vulnerability reports.
 
-## Brand asset pipeline
+## Brand and favicon assets
 
-`Logo.jpg` (150×150 source) is processed by `tools/generate_assets.py`:
-
-- white matte un-mixed → transparent PNG, upscaled ×6.8 with LANCZOS + unsharp
-- gold-tinted variants, monogram crop for favicons
-- ivory favicon set (ico/png/svg), apple-touch + Android/maskable icons
-- 1200×630 light social share card
+The site header and footer use the supplied official logo at `assets/brand/jay-co-logo.jpeg`.
+The favicon and app-icon set uses the emblem cropped from that same source, with the
+original gold color and proportions preserved. To regenerate the browser, Apple, and
+Android icons after replacing the source asset, run:
 
 ```bash
-python3 -m pip install --user pillow
-python3 tools/generate_assets.py
+python3 -m pip install pillow
+python3 tools/generate_favicons.py
 ```
+
+The older `tools/generate_assets.py` pipeline still creates its legacy promotional
+assets from `Logo.jpg`; it is separate from the current site logo and favicon set.
 
 ## Going live
 
